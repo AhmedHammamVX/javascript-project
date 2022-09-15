@@ -123,6 +123,7 @@ function Showing_cart_items() {
 function LoadCP()
 {
     Showing_cart_items();
+    CART_SUMMARY();
 }
 
 /***************************** delete item from cart *******************************/
@@ -157,9 +158,13 @@ function pQuantity(V)
     button.parent().parent().parent().parent().find('.totalP').text(`$${+newVal * Product_price}`);
 }
 
+/***************************** CART SUMMARY *******************************/
 
-
-
+/*  function CART_SUMMARY()
+{
+    let collection  =  document.getElementsByClassName('totalP');
+    console.log(collection.length);
+} */
 
 
 
