@@ -58,42 +58,47 @@
         
     <div class="bg-light p-30 mb-5" id="child" style="align-items: center;" > 
         <center><h2>Sign in</h2><br><br></center>
+      <form action="../index.html" style="justify-content: center;" onsubmit="return signinBtn()" >
      <div class="row" style="display: block; align-items: center;">
         <div>
             <label>E-mail</label>
-            <input class="form-control" type="text" placeholder="example@email.com">
+            <input class="form-control" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Invalid email" placeholder="example@email.com" id="Email">
         </div>
         <div >
             <label>Password</label>
             <div class="passInput">
-            <input id="pass" class="form-control" type="password" >
+            <input class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Wrong password" type="password" id="Password">
             <i id="passI" class="fa-solid fa-eye-slash" onclick="changeVisible(this)"></i>
             </div>
         </div>
-        
       </div><br>
+        <input type="submit" value="Submit" id="subBtn"><br>
+      </form>
+      <br>
       <center>
-        <button id="subBtn">Submit</button><br>
       <label for="sign up">Create a new account &nbsp</label><a id="Sign up" href="SignUp.html" >Sign up</a>
-    </center>
+      </center>
     </div>
     </div>
 
-    <script>
+  
+
+<script src="js/Authentication.js">
+    </script>
+        <script>
         function changeVisible()
     {
-        var inputType= document.getElementById("pass").getAttribute("type");
+        var inputType= document.getElementById("Password").getAttribute("type");
         if(inputType=="text")
         {
-            document.getElementById("pass").setAttribute("type","password");
+            document.getElementById("Password").setAttribute("type","password");
             icon.setAttribute("class","fa-solid fa-eye-slash");
         }else
         {
-            document.getElementById("pass").setAttribute("type","text");
+            document.getElementById("Password").setAttribute("type","text");
             icon.setAttribute("class","fa-solid fa-eye");
         }
     }
-    
     </script>
 </body>
 </html>

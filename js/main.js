@@ -1,3 +1,29 @@
+/***************** logout function *****************/
+function logout()
+{
+    localStorage.removeItem("currentUser");
+    location.href="SignIn.html";
+}
+
+/***************** onload function *****************/
+function onLoadAuth()
+{
+var currentUser= JSON.parse(localStorage.getItem("currentUser"));
+if(currentUser !=null)
+{
+    var lastName=currentUser.lastName;
+    document.getElementById("homeWelcome").innerHTML+="<div class='btn px-0 ml-3'><p class='text-white' style='display:inline-block; justify-content:center;'>Welcome "+lastName+"</p></div>";
+     document.getElementById("accountMenu1").textContent="Profile";
+    document.getElementById("accountMenu2").textContent="Logout";
+     document.getElementById("accountMenu1").setAttribute("onclick","");
+    document.getElementById("accountMenu2").setAttribute("onclick","logout()");
+}else{
+     document.getElementById("accountMenu1").setAttribute("onclick",'(function(){location.href="SignIn.html";})();');
+     document.getElementById("accountMenu2").setAttribute("onclick",'(function(){location.href="SignUp.html";})();');
+}
+}
+
+
 (function ($) {
     "use strict";
     
