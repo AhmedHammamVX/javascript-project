@@ -160,11 +160,11 @@ function pQuantity(V)
 
 /***************************** CART SUMMARY *******************************/
 
-/*  function CART_SUMMARY()
+ function CART_SUMMARY()
 {
     let collection  =  document.getElementsByClassName('totalP');
     console.log(collection.length);
-} */
+}
 
 
 
