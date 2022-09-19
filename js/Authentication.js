@@ -20,6 +20,7 @@ function passVisible(inputId,icon)
     }
 }
 
+document.getElementById("repass").addEventListener("change",checkRepeadPass);
 function checkRepeadPass()
 {
     var pass=document.getElementById("pass");
@@ -32,6 +33,7 @@ function checkRepeadPass()
 
 function signupBtn()
 { 
+ 
 var fname=document.getElementById("fname").value;
 var lname=document.getElementById("lname").value;
 var email =document.getElementById("email").value;
