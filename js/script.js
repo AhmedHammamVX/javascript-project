@@ -1,5 +1,8 @@
-
-
+var j=0;
+fetch("../json/json.json")
+  .then(response => response.json())
+  .then((json) => {j=json; console.log()});
+  console.log(j);
 /*****************GetJson Function*****************/
 
 async function getJson() {
