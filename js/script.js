@@ -120,13 +120,13 @@ function Showing_cart_items() {
         }
 
         document.querySelector(".Cart_Container").innerHTML = Cart;
+        CART_SUMMARY();
     });
 }
 
 function LoadCP()
 {
     Showing_cart_items();
-    CART_SUMMARY();
 }
 
 /***************************** delete item from cart *******************************/
@@ -159,14 +159,23 @@ function pQuantity(V)
     }
     button.parent().parent().find('input').val(newVal);
     button.parent().parent().parent().parent().find('.totalP').text(`$${+newVal * Product_price}`);
+    CART_SUMMARY();
 }
 
 /***************************** CART SUMMARY *******************************/
 
  function CART_SUMMARY()
 {
-    let collection  =  document.getElementsByClassName('totalP');
-    console.log(collection.length);
+    
+    let totalCounter = 0
+    let cItems = document.getElementsByClassName('totalP');
+    for (let i = 0; i < cItems.length; i++) {
+        parseInt((cItems[i].innerText).slice(1))
+        totalCounter += parseInt((cItems[i].innerText).slice(1));
+    }
+
+    document.getElementById('subTotalPDisplay').innerText = `$${totalCounter}`;
+    document.getElementById('totalPDisplay').innerText = `$${totalCounter+10}`
 }
 
 
