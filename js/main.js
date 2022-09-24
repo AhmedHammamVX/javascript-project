@@ -2,10 +2,10 @@
 
 /***************** onload shop page *****************/
 async function filterChange() {
-        const response = await fetch('json/json.json');
-        data = await response.json();
+    const response = await fetch('json/json.json');
+    data = await response.json();
     var checkedFilter = [];
-        var d = document.querySelectorAll('input[type="checkbox"]:checked');
+    var d = document.querySelectorAll('input[type="checkbox"]:checked');
     d.forEach((e) => {
         checkedFilter.push((e.getAttribute("id")));
     });
@@ -16,60 +16,58 @@ async function filterChange() {
     } else {
         var filterResult = new Set();
         var priceFilter = [];
-            if (checkedFilter.includes("price-1"))
-                priceFilter.push(100);
-            if (checkedFilter.includes("price-2"))
-                priceFilter.push(200);
-            if (checkedFilter.includes("price-3"))
-                priceFilter.push(300);
-            if (checkedFilter.includes("price-4"))
-                priceFilter.push(400);
-            if (checkedFilter.includes("price-5"))
-                priceFilter.push(500);
-        
+        if (checkedFilter.includes("price-1"))
+            priceFilter.push(100);
+        if (checkedFilter.includes("price-2"))
+            priceFilter.push(200);
+        if (checkedFilter.includes("price-3"))
+            priceFilter.push(300);
+        if (checkedFilter.includes("price-4"))
+            priceFilter.push(400);
+        if (checkedFilter.includes("price-5"))
+            priceFilter.push(500);
+
         for (const item of data) {
             for (var i = 0; i < priceFilter.length; i++) {
-            if (item.price > priceFilter[i] - 100 && item.price < priceFilter[i])
-                filterResult.add(item);
-        }
-        buildProducts(filterResult);
+                if (item.price > priceFilter[i] - 100 && item.price < priceFilter[i])
+                    filterResult.add(item);
+            }
+            buildProducts(filterResult);
         }
     }
 
 }
 
 function buildProducts(arr) {
-  document.getElementById("shopProducts").innerHTML = "";
+    document.getElementById("shopProducts").innerHTML = "";
     for (const item of arr) {
-        var currentElement= document.getElementById("shopProducts").innerHTML +=
-            `
-                <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                    <div class="product-item bg-light mb-4">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src=${item.pictureLink} alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
+        var currentElement = document.getElementById("shopProducts").innerHTML +=
+            `<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="${item.pictureLink}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" PID="${item.pId}" onclick="addI(this)"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">${item.pName}</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$${item.price}</h5><h6 class="text-muted ml-2"><del>$${item.price}</del></h6>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">${item.pName}</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$${item.price}</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                         </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
+                        <div class="d-flex align-items-center justify-content-center mb-1">
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
                             <small>(99)</small>
-                        </div>
                         </div>
                     </div>
                 </div>
+            </div>
             `;
     }
 }

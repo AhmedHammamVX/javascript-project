@@ -175,7 +175,34 @@ function pQuantity(V)
     }
 
     document.getElementById('subTotalPDisplay').innerText = `$${totalCounter}`;
-    document.getElementById('totalPDisplay').innerText = `$${totalCounter+10}`
+    document.getElementById('totalPDisplay').innerText = `$${totalCounter+10}`;
+}
+
+
+/***************************** Checkout show items list *******************************/
+
+function CheckoutShowItemsList()
+{
+    let totalCount = 0;
+    let sessionSL = sessionStorage.length;
+    let Cart = "";
+    getJson().then(function (data) {
+        for (let i = 0; i < sessionSL; i++) {
+            if (Object.values(sessionStorage)[i] == "true") { continue }
+            totalCount += parseInt(data[Object.values(sessionStorage)[i]].price);
+            Cart += `
+            <div class="d-flex justify-content-between">
+                            <p>${data[Object.values(sessionStorage)[i]].pName}</p>
+                            <p>$${data[Object.values(sessionStorage)[i]].price}</p>
+            </div>
+        `;
+        }
+
+        document.querySelector(".CheckoutTotalContainer").innerHTML = Cart;
+
+        document.getElementById('checkoutSubtotaldisplay').innerText = `$${totalCount}`;
+        document.getElementById('checkoutTotaldisplay').innerText = `$${totalCount+10}`;
+    });
 }
 
 
